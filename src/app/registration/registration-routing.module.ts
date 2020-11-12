@@ -2,15 +2,27 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './components/register/register.component';
 import { WelcomeComponent } from './components/welcome/welcome/welcome.component';
+import { RegistrationComponent } from './registration.component';
 
 const routes: Routes = [
   {
-    path: 'register',
-    component: RegisterComponent,
+    path: '',
+    component: RegistrationComponent,
+    children: [
+      {
+        path: 'register',
+        component: RegisterComponent,
+      },
+      {
+        path: 'welcome',
+        component: WelcomeComponent,
+      },
+    ],
   },
   {
-    path: 'welcome',
-    component: WelcomeComponent,
+    path: '**',
+    redirectTo: 'register',
+    pathMatch: 'full',
   },
 ];
 

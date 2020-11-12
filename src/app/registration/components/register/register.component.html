@@ -1,1 +1,48 @@
-<p>register works!</p>
+<div class="register-container">
+  <h1>
+    <span class="font-normal">Let's</span>
+    <br />
+    <strong>Sign Up</strong>
+  </h1>
+  <span
+    >Use the form below to sign up for this super awesome service. You're only a
+    few steps away!</span
+  >
+  <div class="form">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="firstName"><strong>First Name</strong></label>
+        <input
+          type="text"
+          id="firstName"
+          [formControlName]="controlNames.firstName"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email"><strong>Email Address</strong></label>
+        <input type="email" id="email" [formControlName]="controlNames.email" />
+        <div
+          *ngIf="form.controls[controlNames.email].errors?.email"
+          class="danger"
+        >
+          Invalid email
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password"><strong>Password</strong></label>
+        <input
+          type="password"
+          id="password"
+          [formControlName]="controlNames.password"
+        />
+        <div
+          *ngIf="form.controls[controlNames.password].errors?.minlength"
+          class="danger"
+        >
+          Please enter 8 or more characters
+        </div>
+      </div>
+      <button class="pull-right btn-orange" type="submit">Sign Up</button>
+    </form>
+  </div>
+</div>
