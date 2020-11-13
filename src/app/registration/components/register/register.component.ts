@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  Validator,
-  Validators,
-  FormGroup,
-  AbstractControl,
-} from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { RegisterService } from '../../services/register.service';
 import { Router } from '@angular/router';
+import { controlNames } from '../../constants/register.constants';
 
 @Component({
   selector: 'app-register',
@@ -16,11 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   form: FormGroup;
-  controlNames = {
-    firstName: 'firstName',
-    email: 'email',
-    password: 'password',
-  };
+  controlNames = controlNames;
   constructor(
     private formBuilder: FormBuilder,
     private registerService: RegisterService,
@@ -54,9 +45,9 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     if (this.form.invalid) {
       console.log('invalid');
-      const fnVal = this.form.controls[this.controlNames.firstName].value;
-      const emailVal = this.form.controls[this.controlNames.email].value;
-      const passVal = this.form.controls[this.controlNames.password].value;
+      const fnVal = this.form.controls[controlNames.FIRSTNAME].value;
+      const emailVal = this.form.controls[controlNames.EMAIL].value;
+      const passVal = this.form.controls[controlNames.PASSWORD].value;
       console.log('fn: ' + fnVal + 'email: ' + emailVal + 'pass: ' + passVal);
       const firstErrorElement = document.getElementsByClassName(
         'has-error'

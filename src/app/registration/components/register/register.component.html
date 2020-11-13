@@ -14,20 +14,20 @@
         class="form-group"
         [ngClass]="{
           'has-error':
-            form.controls[controlNames.firstName].errors &&
-            form.controls[controlNames.firstName].touched
+            form.controls[controlNames.FIRSTNAME].errors &&
+            form.controls[controlNames.FIRSTNAME].touched
         }"
       >
         <label for="firstName"><strong>First Name</strong></label>
         <input
           type="text"
           id="firstName"
-          [formControlName]="controlNames.firstName"
+          [formControlName]="controlNames.FIRSTNAME"
         />
         <div
           *ngIf="
-            form.controls[controlNames.firstName].errors?.required &&
-            form.controls[controlNames.firstName].touched
+            form.controls[controlNames.FIRSTNAME].errors?.required &&
+            form.controls[controlNames.FIRSTNAME].touched
           "
           class="error-msg"
         >
@@ -38,22 +38,22 @@
         class="form-group"
         [ngClass]="{
           'has-error':
-            form.controls[controlNames.email].errors &&
-            form.controls[controlNames.email].touched
+            form.controls[controlNames.EMAIL].errors &&
+            form.controls[controlNames.EMAIL].touched
         }"
       >
         <label for="email"><strong>Email Address</strong></label>
-        <input type="email" id="email" [formControlName]="controlNames.email" />
+        <input type="email" id="email" [formControlName]="controlNames.EMAIL" />
         <div
-          *ngIf="form.controls[controlNames.email].errors?.email"
+          *ngIf="form.controls[controlNames.EMAIL].errors?.email"
           class="error-msg"
         >
           Invalid email
         </div>
         <div
           *ngIf="
-            form.controls[controlNames.email].errors?.required &&
-            form.controls[controlNames.email].touched
+            form.controls[controlNames.EMAIL].errors?.required &&
+            form.controls[controlNames.EMAIL].touched
           "
           class="error-msg"
         >
@@ -64,26 +64,26 @@
         class="form-group"
         [ngClass]="{
           'has-error':
-            form.controls[controlNames.password].errors &&
-            form.controls[controlNames.password].touched
+            form.controls[controlNames.PASSWORD].errors &&
+            form.controls[controlNames.PASSWORD].touched
         }"
       >
         <label for="password"><strong>Password</strong></label>
         <input
           type="password"
           id="password"
-          [formControlName]="controlNames.password"
+          [formControlName]="controlNames.PASSWORD"
         />
         <div
-          *ngIf="form.controls[controlNames.password].errors?.minlength"
+          *ngIf="form.controls[controlNames.PASSWORD].errors?.minlength"
           class="error-msg"
         >
           Please enter 8 or more characters
         </div>
         <div
           *ngIf="
-            form.controls[controlNames.password].errors?.required &&
-            form.controls[controlNames.password].touched
+            form.controls[controlNames.PASSWORD].errors?.required &&
+            form.controls[controlNames.PASSWORD].touched
           "
           class="error-msg"
         >

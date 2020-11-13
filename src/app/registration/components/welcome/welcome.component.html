@@ -1,0 +1,15 @@
+<div class="welcome-container">
+  <h1>
+    <span class="font-normal">Welcome,</span><br />{{
+      registerForm && registerForm[controlNames.FIRSTNAME]
+    }}!
+  </h1>
+  <div class="description">
+    <p>You have been registered for this awesome service.</p>
+    <p>Please check your email listed below for instructions.</p>
+  </div>
+  <p>
+    <strong>{{ registerForm && registerForm[controlNames.EMAIL] }}</strong>
+  </p>
+  <button class="pull-right btn-orange" type="submit">Sign Up</button>
+</div>
