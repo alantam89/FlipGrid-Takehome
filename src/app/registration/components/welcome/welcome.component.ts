@@ -10,7 +10,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class WelcomeComponent implements OnInit {
   controlNames = controlNames;
-  registerForm: FormGroup;
+  registerForm: { [key: string]: String };
 
   constructor(private registerService: RegisterService) {}
 

@@ -17,10 +17,7 @@ export class WelcomeGuard implements CanActivate {
     private registerService: RegisterService,
     private router: Router
   ) {}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
+  canActivate():
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
     | boolean

@@ -5,10 +5,10 @@ import { FormGroup } from '@angular/forms';
   providedIn: 'root',
 })
 export class RegisterService {
-  private registerForm;
+  private registerForm: { [key: string]: string };
   constructor() {}
 
-  public saveForm(form: FormGroup) {
+  public saveForm(form: { [key: string]: string }) {
     this.registerForm = form;
   }
   public getForm() {
