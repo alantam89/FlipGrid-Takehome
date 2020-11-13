@@ -6,6 +6,8 @@ import {
   FormGroup,
   AbstractControl,
 } from '@angular/forms';
+import { RegisterService } from '../../services/register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +21,11 @@ export class RegisterComponent implements OnInit {
     email: 'email',
     password: 'password',
   };
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private registerService: RegisterService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -52,8 +58,14 @@ export class RegisterComponent implements OnInit {
       const emailVal = this.form.controls[this.controlNames.email].value;
       const passVal = this.form.controls[this.controlNames.password].value;
       console.log('fn: ' + fnVal + 'email: ' + emailVal + 'pass: ' + passVal);
+      const firstErrorElement = document.getElementsByClassName(
+        'has-error'
+      )[0] as HTMLElement;
+      firstErrorElement.getElementsByTagName('input')[0].focus();
     } else {
       // save to service
+      this.registerService.saveForm(this.form.value);
+      this.router.navigateByUrl('welcome');
     }
   }
 }

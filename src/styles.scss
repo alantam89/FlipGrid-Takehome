@@ -33,3 +33,21 @@ body {
   border: 0px;
   border-radius: 10px;
 }
+
+$error-color: #db060d;
+
+.has-error {
+  color: $error-color;
+  input {
+    border-color: $error-color !important;
+  }
+}
+
+.error-msg {
+  color: $error-color;
+  margin-top: 0.2rem;
+  margin-left: 0.5rem;
+  position: absolute;
+  font-weight: 300;
+  font-size: 0.8rem;
+}
