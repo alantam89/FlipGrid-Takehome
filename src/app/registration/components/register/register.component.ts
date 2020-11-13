@@ -44,18 +44,13 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.form.invalid) {
-      console.log('invalid');
-      const fnVal = this.form.controls[controlNames.FIRSTNAME].value;
-      const emailVal = this.form.controls[controlNames.EMAIL].value;
-      const passVal = this.form.controls[controlNames.PASSWORD].value;
-      console.log('fn: ' + fnVal + 'email: ' + emailVal + 'pass: ' + passVal);
       const firstErrorElement = document.getElementsByClassName(
         'has-error'
       )[0] as HTMLElement;
       firstErrorElement.getElementsByTagName('input')[0].focus();
     } else {
-      // save to service
       this.registerService.saveForm(this.form.value);
+      // normally you'd wait for a successful API response before navigating
       this.router.navigateByUrl('welcome');
     }
   }

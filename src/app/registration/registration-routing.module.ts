@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './components/register/register.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { RegistrationComponent } from './registration.component';
+import { WelcomeGuard } from './guards/welcome.guard';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'welcome',
+        canActivate: [WelcomeGuard],
         component: WelcomeComponent,
       },
     ],
