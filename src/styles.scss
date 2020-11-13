@@ -44,7 +44,7 @@ $error-color: #db060d;
 .has-error {
   color: $error-color;
   input {
-    border-color: $error-color !important;
+    border: 1px solid $error-color !important;
   }
 }
 
@@ -53,6 +53,6 @@ $error-color: #db060d;
   margin-top: 0.2rem;
   margin-left: 0.5rem;
   position: absolute;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 0.8rem;
 }

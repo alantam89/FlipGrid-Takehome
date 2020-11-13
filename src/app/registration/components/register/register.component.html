@@ -23,6 +23,8 @@
           type="text"
           id="firstName"
           aria-labelledby="fnLabel"
+          (keypress)="setShowError(controlNames.FIRSTNAME, false)"
+          (blur)="setShowError(controlNames.FIRSTNAME, true)"
           [formControlName]="controlNames.FIRSTNAME"
           aria-describedby="fnErr-required"
           aria-required="true"
@@ -48,7 +50,8 @@
         [ngClass]="{
           'has-error':
             form.controls[controlNames.EMAIL].errors &&
-            form.controls[controlNames.EMAIL].touched
+            form.controls[controlNames.EMAIL].touched &&
+            showError[controlNames.EMAIL]
         }"
       >
         <label id="emailLabel" for="email"
@@ -58,26 +61,33 @@
           type="email"
           id="email"
           [formControlName]="controlNames.EMAIL"
+          (keypress)="setShowError(controlNames.EMAIL, false)"
+          (blur)="setShowError(controlNames.EMAIL, true)"
           aria-labelledby="emailLabel"
           aria-describedby="emailErr-required emailErr-invalid"
           aria-required="true"
           [attr.aria-invalid]="
             form.controls[controlNames.EMAIL].errors &&
-            form.controls[controlNames.EMAIL].touched
+            form.controls[controlNames.EMAIL].touched &&
+            showError[controlNames.EMAIL]
           "
         />
         <div
-          *ngIf="form.controls[controlNames.EMAIL].errors?.email"
+          *ngIf="
+            form.controls[controlNames.EMAIL].errors?.email &&
+            showError[controlNames.EMAIL]
+          "
           class="error-msg"
           id="emailErr-invalid"
           role="alert"
         >
-          Invalid email
+          Please enter a valid email
         </div>
         <div
           *ngIf="
             form.controls[controlNames.EMAIL].errors?.required &&
-            form.controls[controlNames.EMAIL].touched
+            form.controls[controlNames.EMAIL].touched &&
+            showError[controlNames.EMAIL]
           "
           class="error-msg"
           id="emailErr-required"
@@ -91,7 +101,8 @@
         [ngClass]="{
           'has-error':
             form.controls[controlNames.PASSWORD].errors &&
-            form.controls[controlNames.PASSWORD].touched
+            form.controls[controlNames.PASSWORD].touched &&
+            showError[controlNames.PASSWORD]
         }"
       >
         <label id="passlabel" for="password"><strong>Password</strong></label>
@@ -99,16 +110,22 @@
           type="password"
           id="password"
           [formControlName]="controlNames.PASSWORD"
+          (keypress)="setShowError(controlNames.PASSWORD, false)"
+          (blur)="setShowError(controlNames.PASSWORD, true)"
           aria-labelledby="passlabel"
           aria-describedby="passErr-required passErr-invalid"
           aria-required="true"
           [attr.aria-invalid]="
             form.controls[controlNames.PASSWORD].errors &&
-            form.controls[controlNames.PASSWORD].touched
+            form.controls[controlNames.PASSWORD].touched &&
+            showError[controlNames.PASSWORD]
           "
         />
         <div
-          *ngIf="form.controls[controlNames.PASSWORD].errors?.minlength"
+          *ngIf="
+            form.controls[controlNames.PASSWORD].errors?.minlength &&
+            showError[controlNames.PASSWORD]
+          "
           class="error-msg"
           id="passErr-invalid"
           role="alert"
@@ -118,7 +135,8 @@
         <div
           *ngIf="
             form.controls[controlNames.PASSWORD].errors?.required &&
-            form.controls[controlNames.PASSWORD].touched
+            form.controls[controlNames.PASSWORD].touched &&
+            showError[controlNames.PASSWORD]
           "
           class="error-msg"
           id="passErr-required"

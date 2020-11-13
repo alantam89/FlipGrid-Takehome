@@ -5,6 +5,10 @@
 .form input[type="text"],
 .form input[type="email"],
 .form input[type="password"] {
+  &:focus {
+    box-shadow: 1px 1px 5px blue;
+  }
+  outline: none;
   display: block;
   width: 100%;
   padding: 0.4rem;

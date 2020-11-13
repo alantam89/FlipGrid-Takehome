@@ -12,6 +12,11 @@ import { controlNames } from '../../constants/register.constants';
 export class RegisterComponent implements OnInit {
   form: FormGroup;
   controlNames = controlNames;
+  showError = {
+    [controlNames.FIRSTNAME]: false,
+    [controlNames.EMAIL]: false,
+    [controlNames.PASSWORD]: false,
+  };
   constructor(
     private formBuilder: FormBuilder,
     private registerService: RegisterService,
@@ -29,25 +34,31 @@ export class RegisterComponent implements OnInit {
         '',
         {
           validators: [Validators.required, Validators.email],
-          updateOn: 'blur',
         },
       ],
       password: [
         '',
         {
           validators: [Validators.required, Validators.minLength(8)],
-          updateOn: 'blur',
         },
       ],
     });
   }
 
+  setShowError(controlName: string, val: boolean) {
+    this.showError[controlName] = val;
+  }
+
   onSubmit() {
+    Object.keys(this.showError).forEach((controlName) => {
+      this.showError[controlName] = true;
+    });
     if (this.form.invalid) {
       const firstErrorElement = document.getElementsByClassName(
         'has-error'
       )[0] as HTMLElement;
-      firstErrorElement.getElementsByTagName('input')[0].focus();
+      firstErrorElement &&
+        firstErrorElement.getElementsByTagName('input')[0].focus();
     } else {
       this.registerService.saveForm(this.form.value);
       // normally you'd wait for a successful API response before navigating

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterComponent } from './register.component';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RegisterService } from '../../services/register.service';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -16,7 +16,7 @@ describe('RegisterComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RegisterComponent],
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, ReactiveFormsModule],
       providers: [FormBuilder, RegisterService],
     }).compileComponents();
   });
@@ -67,5 +67,13 @@ describe('RegisterComponent', () => {
       component.onSubmit();
       expect(spy).toHaveBeenCalledWith('welcome');
     });
+  });
+
+  it('should set showError for controlName', () => {
+    fixture.detectChanges();
+    component.setShowError(controlNames.FIRSTNAME, false);
+    expect(component.showError[controlNames.FIRSTNAME]).toBe(false);
+    component.setShowError(controlNames.FIRSTNAME, true);
+    expect(component.showError[controlNames.FIRSTNAME]).toBe(true);
   });
 });
